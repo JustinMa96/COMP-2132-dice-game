@@ -102,6 +102,7 @@ function getWinner() {
         $('#pop-up p').text("Tough luck! You lost.");
         $('#pop-up').css("display", "block");
     } else if (youTotalScore > oppoTotalScore) {
+        $('#pop-up p').text("Congratulations! You won!");
         $('#pop-up').css("display", "block");
     } else {
         $('#pop-up p').text("Same Score! Try again!");
