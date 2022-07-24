@@ -1,0 +1,182 @@
+/* theme color */
+$board-color:radial-gradient(50% 50% at 50% 50%, #5C9560 0%, #084645 100%);
+$you-color: linear-gradient(180deg, #05C4C6 0%, #005355 100%);
+$opponent-color: linear-gradient(180deg, #D3CC20 0%, #AF7317 100%);
+$black-bar-color: #000;
+$box-color: linear-gradient(180deg, #E1E37A 0%, #E3DEAA 100%);
+$popup-color: linear-gradient(180deg, #5C9560 0%, #084645 100%);
+
+
+@mixin texture-btn($xoffset, $yoffset, $xinset, $yinset, $color1, $color2,$color3) {
+    box-shadow: $xoffset $yoffset 10px rgba(0, 0, 0, 0.25), inset $xinset $yinset 4px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(180deg, $color1 0%, $color2 40%, $color3 100%);    
+}
+
+
+img{
+    width: 5%;
+}
+
+.grid-cont{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.flex-cont{
+    display: flex;
+}
+
+html{
+    background: url(../images/bg-sea.jpg);
+    font-family: 'Nunito', sans-serif;
+    color: #fff;
+    padding: 50px;
+    text-align: center;
+}
+
+h2,h3,h4,.score{
+    margin: 0;
+    padding: 20px;
+    font-size: 2vw;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    column-gap: 50px;
+}
+
+h1{
+    background-color: #fff;
+    color: #000;
+    font-size: 2.5vw;
+    padding: 5px;
+    border: #000 1.5px solid;    
+}
+
+main{
+    background: $board-color;
+    padding: 5vw;
+}
+
+.you{
+    background: $you-color;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.opponent{
+    background: $opponent-color;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.black-bar{
+    background-color: #000;
+}
+
+.dice{
+    width: 30%;
+}
+
+.box{
+    background: $box-color;
+    margin-bottom: 5vh;
+    padding-bottom: 2vh;
+    color: #000;
+}
+
+
+
+.dice,.score{
+    visibility: hidden;
+    font-weight: bold;
+}
+
+.buttons{
+    justify-content: center;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+
+.texture-btn {
+    font-size: 2vw;
+    margin: 1vw;
+    border-radius: 5px;
+    @include texture-btn(0px, 4px , 2px , 3px, #C2C2C2 , #ECECEC, #B0B0B0 )
+}
+
+.texture-btn:hover {
+    font-size: 2.2vw;
+    @include texture-btn(0px, 4px , -2px , -3px, #C2C2C2 , #ECECEC, #737373 )
+}
+
+.start-end{
+    justify-content: space-between;
+}
+
+#btn-hide{
+    background: none;
+    border: none;
+    color: #fff;    
+}
+
+li{
+    text-align: start;
+}
+
+#pop-up{
+    position: fixed;
+    width: 40vw;
+    left: 30%;
+    top: 50%;
+    background: $popup-color;
+    padding: 30px;
+    display: none;
+}
+
+#btn-close{
+    float: right;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2vw;
+}
+
+#btn-close:hover{
+    color: #05C4C6;
+}
+
+#pop-up h2{
+    font-size: 3vw;
+}
+
+#btn-okay{
+    background: linear-gradient(270deg, #B2BD6B 0%, #44A224 100%);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    width: 20vw;
+    font-size: 2vw;
+}
+
+#btn-okay:hover{
+    background: linear-gradient(270deg,  #44A224 0%, #44A224 100%);
+}
+
+footer{
+    background-color: #084645;
+    padding-bottom: 20px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+
+
+
+
+
