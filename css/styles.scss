@@ -140,8 +140,8 @@ li{
     top: 50%;
     background: $popup-color;
     padding: 30px;
-    opacity: 0;
-    transition: opacity 2s;
+    visibility: hidden;
+    
 }
 
 #btn-close{

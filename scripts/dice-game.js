@@ -98,24 +98,30 @@ function getTotalScore() {
 }
 
 function getWinner() {
+    
+    
     if (youTotalScore < oppoTotalScore) {
         $('#pop-up p').text("Tough luck! You lost.");
-        $('#pop-up').css("opacity", "100");
+        $('#pop-up').css("visibility", "visible");
+        
     } else if (youTotalScore > oppoTotalScore) {
         $('#pop-up p').text("Congratulations! You won!");
-        $('#pop-up').css("opacity", "100");
+        $('#pop-up').css("visibility", "visible");
+        
     } else {
         $('#pop-up p').text("Same Score! Try again!");
-        $('#pop-up').css("opacity", "100");
+        $('#pop-up').css("visibility", "visible");
+        
     }
 }
 
 $("#btn-close").click(function () {
-    $('#pop-up').css("opacity", "0");
+    $('#pop-up').css("visibility", "hidden");
+    
 })
 
 $("#btn-okay").click(function () {
-    $('#pop-up').css("opacity", "0");
+    $('#pop-up').css("visibility", "hidden");
 })
 
 $("#new-game").click(function () {
@@ -126,7 +132,7 @@ $("#new-game").click(function () {
     $("#stop-dice").css("cursor", "pointer")
     $("#stop-dice").prop('disabled', false)
     $("#stop-dice").css("display", "none")
-    $('#pop-up').css("opacity", "0");
+    $('#pop-up').css("visibility", "hidden");
     
     youDiceOneValue = 0;
     youDiceTwoValue = 0;
