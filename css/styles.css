@@ -100,6 +100,10 @@ button {
   background: linear-gradient(180deg, #C2C2C2 0%, #ECECEC 40%, #737373 100%);
 }
 
+#stop-dice {
+  display: none;
+}
+
 .start-end {
   justify-content: space-between;
 }
@@ -121,7 +125,8 @@ li {
   top: 50%;
   background: linear-gradient(180deg, #5C9560 0%, #084645 100%);
   padding: 30px;
-  display: none;
+  opacity: 0;
+  transition: opacity 2s;
 }
 
 #btn-close {

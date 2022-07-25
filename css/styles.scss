@@ -115,6 +115,10 @@ main{
     @include texture-btn(0px, 4px , -2px , -3px, #C2C2C2 , #ECECEC, #737373 )
 }
 
+#stop-dice {
+    display: none;
+}
+
 .start-end{
     justify-content: space-between;
 }
@@ -136,7 +140,8 @@ li{
     top: 50%;
     background: $popup-color;
     padding: 30px;
-    display: none;
+    opacity: 0;
+    transition: opacity 2s;
 }
 
 #btn-close{
@@ -150,6 +155,7 @@ li{
 #btn-close:hover{
     color: #05C4C6;
 }
+
 
 #pop-up h2{
     font-size: 3vw;
