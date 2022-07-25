@@ -42,8 +42,8 @@ var oppoRoundScore = 0;
 var oppoTotalScore = 0;
 var rollTimes = 0;
 
-
-$("#roll-dice").click(function () {
+/* Roll dice version one */
+/* $("#roll-dice").click(function () {
     $('.dice').css("visibility", "visible");
     $('.score').css("visibility", "visible");
     youDiceOneValue = Math.floor((Math.random() * 6) + 1);
@@ -66,7 +66,7 @@ $("#roll-dice").click(function () {
         $(this).css("cursor", "not-allowed")
         $(this).prop('disabled',true)
     }
-})
+}) */
 
 function getRoundScore() {
     if (youDiceOneValue === 1 || youDiceTwoValue === 1) {
@@ -100,29 +100,34 @@ function getTotalScore() {
 function getWinner() {
     if (youTotalScore < oppoTotalScore) {
         $('#pop-up p').text("Tough luck! You lost.");
-        $('#pop-up').css("display", "block");
+        $('#pop-up').css("opacity", "100");
     } else if (youTotalScore > oppoTotalScore) {
         $('#pop-up p').text("Congratulations! You won!");
-        $('#pop-up').css("display", "block");
+        $('#pop-up').css("opacity", "100");
     } else {
         $('#pop-up p').text("Same Score! Try again!");
-        $('#pop-up').css("display", "block");
+        $('#pop-up').css("opacity", "100");
     }
 }
 
 $("#btn-close").click(function () {
-    $('#pop-up').css("display", "none");
+    $('#pop-up').css("opacity", "0");
 })
 
 $("#btn-okay").click(function () {
-    $('#pop-up').css("display", "none");
+    $('#pop-up').css("opacity", "0");
 })
 
 $("#new-game").click(function () {
     $('.dice').css("visibility", "hidden");
     $('.score').css("visibility", "hidden");
     $("#roll-dice").css("cursor", "pointer")
-    $("#roll-dice").prop('disabled',false)
+    $("#roll-dice").prop('disabled', false)
+    $("#stop-dice").css("cursor", "pointer")
+    $("#stop-dice").prop('disabled', false)
+    $("#stop-dice").css("display", "none")
+    $('#pop-up').css("opacity", "0");
+    
     youDiceOneValue = 0;
     youDiceTwoValue = 0;
     oppoDiceOneValue = 0;
@@ -131,11 +136,68 @@ $("#new-game").click(function () {
     youTotalScore = 0;
     oppoRoundScore = 0;
     oppoTotalScore = 0;
-    rollTimes = 0;  
+    rollTimes = 0; 
+    $('#you-round-score').text(youRoundScore);
+    $('#you-total-score').text(youTotalScore);
+    $('#oppo-total-score').text(oppoRoundScore);
+    $('#oppo-total-score').text(oppoTotalScore);
     
 })
 
 
+/* Roll Dice version 2 (Animation Rolling) */
+const rollDice = document.getElementById('roll-dice');
+const stopDice = document.getElementById('stop-dice');
+const youDiceOne = document.getElementById('you-dice-1');
+const youDiceTwo = document.getElementById('you-dice-2');
+const oppoDiceOne = document.getElementById('oppo-dice-1');
+const oppoDiceTwo = document.getElementById('oppo-dice-2');
+
+let animationIsUnderway = false;
+
+rollDice.addEventListener('click', function () {
+    if (!animationIsUnderway) {
+        animationIsUnderway = true;
+        $('.score').css("visibility", "visible");
+        youDiceOne.style.visibility = 'visible';
+        youDiceTwo.style.visibility = 'visible';
+        oppoDiceOne.style.visibility = 'visible';
+        oppoDiceTwo.style.visibility = 'visible';
+        stopDice.style.display = 'block';
+        diceAnimation = requestAnimationFrame(roll);
+    }
+})
+
+stopDice.addEventListener('click', function () {
+    animationIsUnderway = false;
+    clearTimeout(rollTimeOut);
+    cancelAnimationFrame(roll);
+    rollTimes++;
+    getRoundScore();
+    getTotalScore();
+    if (rollTimes === 3) {
+        getWinner();
+        $(this).css("cursor", "not-allowed")
+        $(this).prop('disabled', true)
+        $(this).prev().css("cursor", "not-allowed")
+        $(this).prev().prop('disabled',true)
+    }
+})
+
+function roll() {
+    youDiceOneValue = Math.floor((Math.random() * 6) + 1);
+    youDiceTwoValue = Math.floor((Math.random() * 6) + 1);
+    oppoDiceOneValue = Math.floor((Math.random() * 6) + 1);
+    oppoDiceTwoValue = Math.floor((Math.random() * 6) + 1);
+    youDiceOne.src = `images/dice-${youDiceOneValue}.svg`;
+    youDiceTwo.src = `images/dice-${youDiceTwoValue}.svg`;
+    oppoDiceOne.src = `images/dice-${oppoDiceOneValue}.svg`;
+    oppoDiceTwo.src = `images/dice-${oppoDiceTwoValue}.svg`;
+
+    const rollDelay = 100;
+    rollTimeOut = setTimeout(roll, rollDelay);   
+    
+}
 
 
 
